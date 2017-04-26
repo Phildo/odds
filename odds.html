@@ -1,0 +1,31 @@
+<html>
+<script>
+var bet;
+var spent = 0;
+var spent_milestone = 0;
+var p;
+var f;
+var format = function(x) { return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
+
+var goal = 10;
+var milestone = 1000;
+var n = 37;
+
+for(var i = 0; i < n; i++)
+{
+  p = Math.pow(0.5,i+1);
+  f = 0;
+  for(var j = 1; j < 10; j++)
+    if(1/Math.pow(10,j) > p) f = j;
+  f = Math.pow(10,f);
+  bet = goal*Math.pow(2,i);
+  spent += bet
+  if(spent > Math.pow(milestone,spent_milestone))
+  {
+    console.log("spent > $"+format(Math.pow(milestone,spent_milestone)));
+    spent_milestone++;
+  }
+  console.log(i+" -- bet:$"+format(bet)+" "+(p*100)+"% (< 1/"+format(f)+") spent:$"+format(spent));
+}
+</script>
+</html>
